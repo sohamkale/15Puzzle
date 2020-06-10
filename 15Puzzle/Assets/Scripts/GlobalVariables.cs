@@ -9,6 +9,7 @@ public static class GlobalVariables
     //False by default (Initial start of game), controls the clearing of the game board
     public static bool v_NewGame;
     public static int v_NumberOfTilesToLoad=1;
+    public static int[] v_TileNumberGenerated = new int[50];
 
 
 
