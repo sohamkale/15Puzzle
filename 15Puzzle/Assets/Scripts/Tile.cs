@@ -66,13 +66,24 @@ public class Tile : MonoBehaviour
                 if (v_TileID == GlobalVariables.v_emptyTileNum)
                 {
                     Debug.Log("EMPTY TILE: " + v_TileID);
-                    gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "";
+                    //DESTROY
+                    Destroy(gameObject);
+                    //gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
 
                 }
                 else
                 {
-                    gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
-                    
+                    if(v_TileID == 16)
+                    {
+                        gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = GlobalVariables.v_emptyTileNum.ToString();
+                        gameObject.GetComponent<Tile>().v_TileID = GlobalVariables.v_emptyTileNum;
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
+
+                    }
+
                 }
             }
         }
