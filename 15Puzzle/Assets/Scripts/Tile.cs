@@ -5,18 +5,18 @@ using System;
 using UnityEngine.UI;
 public class Tile : MonoBehaviour
 {
- ///   private enum TileIdentity
+    ///   private enum TileIdentity
     //{  
     //int v_myID;
-   // }
+    // }
     public int v_TileID =  0;
-    public bool v_continueLoop = true,v_matchFound=false;
+    public bool v_continueLoop = true,v_matchFound=false, v_shouldBeEmpty = false;
     // Start is called before the first frame update
     void Start()
     {
-        v_TileID = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad + 1);
-    
-        gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
+        //Generates random ID between 1 -MaxNumOFTiles
+        // v_TileID = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad + 1);
+        //gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
     }
     private void Update()
     {
@@ -27,38 +27,56 @@ public class Tile : MonoBehaviour
     {
         while (v_continueLoop)
         {
-           
+            v_matchFound = false;
             v_TileID = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad + 1);
+            //Debug.Log("Update ID is " + v_TileID);
             for (int i = 0; i < GlobalVariables.v_TileNumberGenerated.Length; i++)
             {
-                 if (GlobalVariables.v_TileNumberGenerated[i] ==0 && v_TileID == GlobalVariables.v_TileNumberGenerated[i])
+                
+                
+                if (v_TileID == GlobalVariables.v_TileNumberGenerated[i])
                 {
                     v_matchFound = true;
-                     break;
+                    //Debug.Log("Match Found inside If: " + v_matchFound);
+                    //Debug.Log(GlobalVariables.v_TileNumberGenerated[i] + " " + v_TileID);
+                    
+                    break;
                 }
             }
-            Debug.Log("Cont");
-            if (v_matchFound)
+            
+            if (!v_matchFound)
             {
-                v_continueLoop = true;
-            }
-            else
-            {
-               
+
+                
                 for (int i = 0; i < GlobalVariables.v_TileNumberGenerated.Length; i++)
                 {
+                    
                     if (GlobalVariables.v_TileNumberGenerated[i] == 0)
                     {
-                        Debug.Log("Adding: " + v_TileID);
+                        
+                        //Debug.Log("Adding: " + v_TileID);
                         GlobalVariables.v_TileNumberGenerated[i] = v_TileID;
                         break;
                     }
                   
                 }
+
                 v_continueLoop = false;
-                gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
+
+                if (v_TileID == GlobalVariables.v_emptyTileNum)
+                {
+                    Debug.Log("EMPTY TILE: " + v_TileID);
+                    gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "";
+
+                }
+                else
+                {
+                    gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
+                    
+                }
             }
         }
     }
- 
+
+
 }
