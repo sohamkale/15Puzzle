@@ -1,9 +1,10 @@
 ﻿<Properties StartupConfiguration="{322A541A-6695-6B56-82C0-907C49D26169}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpawnRandomTiles.cs">
     <Files>
-      <File FileName="Assets/Scripts/GlobalVariables.cs" Line="13" Column="6" />
-      <File FileName="Assets/Scripts/Tile.cs" Line="62" Column="18" />
-      <File FileName="Assets/Scripts/SpawnRandomTiles.cs" Line="53" Column="32" />
+      <File FileName="Assets/Scripts/GlobalVariables.cs" Line="17" Column="1" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="102" Column="1" />
+      <File FileName="Assets/Scripts/SpawnRandomTiles.cs" Line="168" Column="2" />
+      <File FileName="Assets/SlideScript.cs" Line="45" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
