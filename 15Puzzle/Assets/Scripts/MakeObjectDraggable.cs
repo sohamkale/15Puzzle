@@ -311,5 +311,39 @@ public class MakeObjectDraggable : MonoBehaviour
 
     }
 
+    private void checkIfWonColumns()
+    {
+        int matchCount = 0;
+        int multiplier = 0;
+        for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
+        {
+            for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
+            {
+                if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * 4) + (i + 1)))
+                {
+                    multiplier++;
+                    matchCount++;
+                }
+                
+            }
+            if (multiplier == 4)
+            {
+                //matchCount = 0;
+                multiplier = 0;
+            }
+            else
+            {
+                matchCount = 0;
+                multiplier = 0;
+            }
+        }
+
+        if (matchCount == 16)
+        {
+            Debug.LogError("YOU WIN.....HURRAY!!!");
+        }
+
+    }
+
 
 }
