@@ -11,6 +11,7 @@ public class SpawnRandomTiles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         InstantiateTiles();
         v_onlyOnce = false;
 
@@ -73,6 +74,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             Debug.Log("solvable: " + inversionCount);
                             GlobalVariables.v_solvableboard = true;
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
+                            GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
                         }
                         else
                         {
@@ -122,6 +124,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             Debug.Log("solvable: " + inversionCount);
                             GlobalVariables.v_solvableboard = true;
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
+                            GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
                         }
                         else
                         {
@@ -162,6 +165,7 @@ public class SpawnRandomTiles : MonoBehaviour
 
     private void InstantiateTiles()
     {
+        GlobalVariables.v_AllTiles1DList.Add(v_OriginalTile);
         int v_xPosition = 1, v_yPosition = 0;
         bool v_NotFirstEntrance = false;
         
@@ -190,6 +194,7 @@ public class SpawnRandomTiles : MonoBehaviour
                 {
                     GameObject v_clonedTile = Instantiate(v_OriginalTile, v_tempPosition, Quaternion.identity);
                     GlobalVariables.v_clonedTiles.Add(v_clonedTile);
+                    GlobalVariables.v_AllTiles1DList.Add(v_clonedTile);
 
                 }
                 //Increase position so we know where to spawn the next tile horizontally.
@@ -214,6 +219,7 @@ public class SpawnRandomTiles : MonoBehaviour
         }
         GlobalVariables.v_grid.Clear();
         GlobalVariables.v_clonedTiles.Clear();
+        GlobalVariables.v_AllTiles1DList.Clear();
         for (int i = 0; i < GlobalVariables.v_TileNumberGenerated.Length; i++)
         {
             GlobalVariables.v_TileNumberGenerated[i] = 0;
