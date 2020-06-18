@@ -276,5 +276,40 @@ public class MakeObjectDraggable : MonoBehaviour
 
     }
 
+    private void checkIfWonReverse()
+    {
+        int matchCount = 0;
+        int multiplier = 4;
+        for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
+        {
+            for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
+            {
+                if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * 4) - (j)))
+                {
+                    matchCount++;
+                }
+                //Debug.LogError("Count [" + i + "," + j + "] : " + GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID);
+            }
+            if (matchCount == 4)
+            {
+                matchCount = 0;
+                multiplier--;
+                Debug.LogError("NEW ROW: " + matchCount);
+            }
+            else
+            {
+                matchCount = 0;
+                multiplier = 4;
+            }
+            
+        }
+
+        if (multiplier == 0)
+        {
+            Debug.LogError("YOU WIN.....HURRAY!!!");
+        }
+
+    }
+
 
 }
