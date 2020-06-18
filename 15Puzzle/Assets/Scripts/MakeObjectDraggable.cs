@@ -93,8 +93,8 @@ public class MakeObjectDraggable : MonoBehaviour
                 
                 if (GlobalVariables.v_2Dlist[i, a] == -1) //horizontal
                 {
-                    Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j)].GetComponent<Tile>().v_TileID + ">>>> " + i + ", " + j );
-                    Debug.Log(GlobalVariables.v_AllTiles2DArray[i, a].GetComponent<Tile>().v_TileID + ">>>> " + i + ", " + a);
+                    //Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j)].GetComponent<Tile>().v_TileID + ">>>> " + i + ", " + j );
+                    //Debug.Log(GlobalVariables.v_AllTiles2DArray[i, a].GetComponent<Tile>().v_TileID + ">>>> " + i + ", " + a);
                     dist = (a - j);
                     if(dist < 0)
                     {
@@ -107,27 +107,21 @@ public class MakeObjectDraggable : MonoBehaviour
                             emptyTilePos5.x = emptyTilePos5.x + 1;
                             GlobalVariables.v_AllTiles2DArray[i, (j - b)].transform.position = pos5;
                             emptyTile.transform.position = emptyTilePos5;
-                            //Swap2DListVars(i, (j - b), i, (a + b));
-                            //Swap2DListVars(i, (GlobalVariables.v_gridWidth + dist + b), i, (a + b));
-                            //Swap2DTilesListVars(i, (GlobalVariables.v_gridWidth + dist + b), i, (a + b));
-                            //Debug.Log("i, (j - (b + dist)) " + i + "," + (j - (b + val)) + " :::: " + (GlobalVariables.v_gridWidth + dist + b));
-                            //Debug.Log("i, (a + b) " + i + "," + (a + b));
-                            //Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j - b)].GetComponent<Tile>().v_TileID);
+                            
                         }
                        
                         for(int b = val - 1; b >= 0; b--)
                         {
-                            Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j - b)].GetComponent<Tile>().v_TileID);
-                            Debug.Log("Swap 1: " + i + ", " + (j - b) + " Swap 2: " + i + ", " + (j - b - 1));
-                            //Swap2DListVars(i, (GlobalVariables.v_gridWidth + dist + b), i, (a + b)); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
+                            //Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j - b)].GetComponent<Tile>().v_TileID);
+                            //Debug.Log("Swap 1: " + i + ", " + (j - b) + " Swap 2: " + i + ", " + (j - b - 1));
+      
                             Swap2DListVars(i, (j - b), i, (j - b - 1));
                         }
-                        GlobalVariables.displayAllTiles();
-                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        GlobalVariables.displayAll();
-                        break;
                         //GlobalVariables.displayAllTiles();
-                        //Debug.LogError("In else dist is -ve: " + i + "," + a + " ::: " + dist );
+                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        //GlobalVariables.displayAll();
+                        break;
+                        
                     }
                     else if(dist > 0)
                     {
@@ -141,14 +135,8 @@ public class MakeObjectDraggable : MonoBehaviour
                             GlobalVariables.v_AllTiles2DArray[i, (j + b)].transform.position = pos6;
                             emptyTile.transform.position = emptyTilePos6;
 
-                            //Swap2DListVars(i, (GlobalVariables.v_gridWidth - dist + b + 1), i, (a - b));
-                            //Swap2DTilesListVars(i, (GlobalVariables.v_gridWidth - dist + b + 1), i, (a - b));
-                            //Swap2DListVars(i, (j + b), i, (a - b));
-                            //Swap2DListVars(i, (j + a - (b + 1)), i, (a - b));
-                            //Debug.Log("i, (j - (b + dist)) " + i + "," + (j - (b + val)) + " :::: " + (GlobalVariables.v_gridWidth + dist + b));
-                            //Debug.Log("i, (a + b) " + i + "," + (a + b));
-                            //GlobalVariables.displayAll();
-                            Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j + b)].GetComponent<Tile>().v_TileID);
+                           
+                            //Debug.Log(GlobalVariables.v_AllTiles2DArray[i, (j + b)].GetComponent<Tile>().v_TileID);
                         }
                         for (int b = val - 1; b >= 0; b--)
                         {
@@ -156,12 +144,11 @@ public class MakeObjectDraggable : MonoBehaviour
                             //Swap2DListVars(i, (j + a - (b + 1)), i, (a - b)); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
                             Swap2DListVars(i, (j + b), i, (j + b + 1));
                         }
-                        GlobalVariables.displayAllTiles();
-                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        GlobalVariables.displayAll();
-                        break;
                         //GlobalVariables.displayAllTiles();
-                        //Debug.LogError("In else dist is +ve: " + i + "," + a + " ::: " + dist);
+                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        //GlobalVariables.displayAll();
+                        break;
+                       
                     }
                     
                 }else if(GlobalVariables.v_2Dlist[a, j] == -1)
@@ -180,19 +167,17 @@ public class MakeObjectDraggable : MonoBehaviour
                             emptyTilePos6.y = emptyTilePos6.y - 1;
                             GlobalVariables.v_AllTiles2DArray[(i - b), j].transform.position = pos6;
                             emptyTile.transform.position = emptyTilePos6;
-                            //Swap2DListVars((i - b), j, (a + b), j);
-                            //Swap2DListVars((GlobalVariables.v_gridWidth + dist + b),j,(a + b), j);
                             Debug.Log(GlobalVariables.v_AllTiles2DArray[(i - b), j].GetComponent<Tile>().v_TileID);
                         }
                         for (int b = val - 1; b >= 0; b--)
                         {
-                            Debug.Log("Swap 1: " + (i - b) + ", " + (j) + " Swap 2: " + (i - b - 1) + ", " + (j));
+                            //Debug.Log("Swap 1: " + (i - b) + ", " + (j) + " Swap 2: " + (i - b - 1) + ", " + (j));
                             //Swap2DListVars((GlobalVariables.v_gridWidth + dist + b), j, (a + b), j); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
                             Swap2DListVars(((i - b)), j, (i - b - 1), j);
                         }
-                        GlobalVariables.displayAllTiles();
-                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        GlobalVariables.displayAll();
+                        //GlobalVariables.displayAllTiles();
+                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        //GlobalVariables.displayAll();
                         break;
                         //GlobalVariables.displayAll();
                         //Debug.LogError("In else dist is negative: " + a + "," + j + " ::: " + dist);
@@ -208,30 +193,26 @@ public class MakeObjectDraggable : MonoBehaviour
                             emptyTilePos6.y = emptyTilePos6.y + 1;
                             GlobalVariables.v_AllTiles2DArray[(i + b), j].transform.position = pos6;
                             emptyTile.transform.position = emptyTilePos6;
-                            //Swap2DListVars((i + b), j, (a - b), j);
-                            //Swap2DListVars((i + a - (b + 1)), j, (a - b), j);
-                            //
-                            Debug.Log(GlobalVariables.v_AllTiles2DArray[(i + b), j].GetComponent<Tile>().v_TileID);
+                            //Debug.Log(GlobalVariables.v_AllTiles2DArray[(i + b), j].GetComponent<Tile>().v_TileID);
                         }
                         for (int b = val - 1; b >= 0; b--)
                         {
-                            Debug.Log("Swap 1: " + (i + b) + ", " + j + " Swap 2: " + (i + b + 1) + ", " + j);
+                            //Debug.Log("Swap 1: " + (i + b) + ", " + j + " Swap 2: " + (i + b + 1) + ", " + j);
                             //Swap2DListVars((i + a - (b + 1)), j, (a - b), j); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
                             Swap2DListVars((i + b), j, (i + b + 1), j);
                         }
-                        GlobalVariables.displayAllTiles();
-                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        GlobalVariables.displayAll();
+                        //GlobalVariables.displayAllTiles();
+                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        //GlobalVariables.displayAll();
                         break;
                         
-                        //Debug.LogError("In else dist is positive" + a + "," + j + " ::: " + dist);
                     }
                     break;
                     
                 }
             }
             
-            Debug.LogError("Match Not Found: " + v_clickedTileId + "Tile x: " + i + " Tile y: " + j);
+            //Debug.LogError("Match Not Found: " + v_clickedTileId + "Tile x: " + i + " Tile y: " + j);
             //GlobalVariables.display();
         }
     }
@@ -247,7 +228,7 @@ public class MakeObjectDraggable : MonoBehaviour
     private int c = 0;
     private void Swap2DListVars(int currTileXIndex, int currTileYIndex, int emptyTileXIndex, int emptyTileYIndex)
     {
-        Debug.LogError("currTileXIndex: " + currTileXIndex + " currTileYIndex: " + currTileYIndex + " emptyTileXIndex: " + emptyTileXIndex + " emptyTileYIndex: " + emptyTileYIndex);
+        //Debug.LogError("currTileXIndex: " + currTileXIndex + " currTileYIndex: " + currTileYIndex + " emptyTileXIndex: " + emptyTileXIndex + " emptyTileYIndex: " + emptyTileYIndex);
         
         int v_temp = GlobalVariables.v_2Dlist[emptyTileXIndex, emptyTileYIndex];
         GlobalVariables.v_2Dlist[emptyTileXIndex, emptyTileYIndex] = GlobalVariables.v_2Dlist[currTileXIndex, currTileYIndex];
@@ -257,15 +238,43 @@ public class MakeObjectDraggable : MonoBehaviour
         GameObject v_temp1 = GlobalVariables.v_AllTiles2DArray[emptyTileXIndex, emptyTileYIndex];
         GlobalVariables.v_AllTiles2DArray[emptyTileXIndex, emptyTileYIndex] = GlobalVariables.v_AllTiles2DArray[currTileXIndex, currTileYIndex];
         GlobalVariables.v_AllTiles2DArray[currTileXIndex, currTileYIndex] = v_temp1;
+
+        checkIfWon();
         c++;
     }
 
-    private void Swap2DTilesListVars(int currTileXIndex, int currTileYIndex, int emptyTileXIndex, int emptyTileYIndex)
+    private void checkIfWon()
     {
-        //Debug.LogError("currTileXIndex: " + currTileXIndex + " currTileYIndex: " + currTileYIndex + " emptyTileXIndex: " + emptyTileXIndex + " emptyTileYIndex: " + emptyTileYIndex);
-        
-    }
+        int matchCount = 0;
+        int multiplier = 0;
+        for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
+        {
+            for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
+            {
+                if(GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * 4) + (j + 1)))
+                {
+                    matchCount++;
+                }
+                //Debug.LogError("Count [" + i + "," + j + "] : " + GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID);
+            }
+            if(matchCount == 4)
+            {
+                matchCount = 0;
+                multiplier++;
+            }else
+            {
+                matchCount = 0;
+                multiplier = 0;
+            }
+            //Debug.LogError("NEW ROW: " + i);
+        }
 
+        if(multiplier == 4)
+        {
+            Debug.LogError("YOU WIN.....HURRAY!!!");
+        }
+
+    }
 
 
 }
