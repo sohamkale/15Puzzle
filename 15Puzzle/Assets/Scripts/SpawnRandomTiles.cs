@@ -71,12 +71,15 @@ public class SpawnRandomTiles : MonoBehaviour
                             //Debug.Log("InversionCount: " + inversionCount);
                             v_onlyOnce = true;
                             Debug.Log("solvable: " + inversionCount);
+                            GlobalVariables.v_solvableboard = true;
+                            GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                         }
                         else
                         {
                             Debug.Log("unsolvable: " + inversionCount);
                             
                             v_onlyOnce = false;
+                            GlobalVariables.v_solvableboard = false;
                             GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
                             //for (int i = 0; i < tiles.Length; i++)//Iterates through the desired number of tiles and deletes it.
                             //{
@@ -117,11 +120,14 @@ public class SpawnRandomTiles : MonoBehaviour
                             //Debug.Log("Total InversionCount: " + inversionCount);
                             v_onlyOnce = true;
                             Debug.Log("solvable: " + inversionCount);
+                            GlobalVariables.v_solvableboard = true;
+                            GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                         }
                         else
                         {
                             Debug.Log("unsolvable: " + inversionCount);
                             v_onlyOnce = false;
+                            GlobalVariables.v_solvableboard = false;
                             GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
                             //for (int i = 0; i < tiles.Length; i++)//Iterates through the desired number of tiles and deletes it.
                             //{

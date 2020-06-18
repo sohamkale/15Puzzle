@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 231174417}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,6 +381,8 @@ MonoBehaviour:
   v_TileID: 0
   v_continueLoop: 1
   v_matchFound: 0
+  v_shouldBeEmpty: 0
+  v_iAmEmpty: 0
 --- !u!114 &231174417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b4acf8d087f6945aa075428e2f1be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  v_clickedTileId: 0
+  emptyTile: {fileID: 0}
 --- !u!1 &269805325
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   v_OriginalTile: {fileID: 231174411}
+  v_onlyOnce: 0
   v_NumberOfTilesToSpawn: 16
 --- !u!4 &1119666652
 Transform:

@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour
     // }
     public int v_TileID = 0;
     public bool v_continueLoop = true, v_matchFound = false, v_shouldBeEmpty = false;
-    public bool v_iAmClone = false;
+    public bool v_iAmEmpty = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +85,11 @@ public class Tile : MonoBehaviour
                     //Debug.Log("EMPTY TILE: " + v_TileID);
                     //DESTROY
                     Debug.LogError("Deleting tile number: " + GlobalVariables.v_emptyTileNum);
+                    GlobalVariables.v_emptyTileObject = gameObject;
                     gameObject.SetActive(false);
+                    gameObject.GetComponent<Tile>().v_TileID = 16;         //CHANGED
+                    gameObject.GetComponent<Tile>().v_iAmEmpty = true;
+                    gameObject.GetComponent<Tile>().tag = "EmptyTile";
                     //Destroy(gameObject);
                     //gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
                     GlobalVariables.v_grid.Add(-1);
@@ -95,7 +99,7 @@ public class Tile : MonoBehaviour
                     if (v_TileID == 16)
                     {
                         gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = GlobalVariables.v_emptyTileNum.ToString();
-                        gameObject.GetComponent<Tile>().v_TileID = GlobalVariables.v_emptyTileNum;
+                        gameObject.GetComponent<Tile>().v_TileID = GlobalVariables.v_emptyTileNum;  
                         GlobalVariables.v_grid.Add(gameObject.GetComponent<Tile>().v_TileID);
                          
                     }
