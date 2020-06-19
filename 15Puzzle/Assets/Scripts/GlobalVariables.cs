@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public static class GlobalVariables
 {
@@ -23,6 +25,17 @@ public static class GlobalVariables
     
     public static int v_emptyTileNum = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad * 15 + 1);
 
+    public static float v_timeLeft = 1.0f;
+    public static GameObject entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
+    public static void ticker()
+    {
+        v_timeLeft -= Time.deltaTime;
+        
+        if (v_timeLeft < 0)
+        {
+            //Do something useful or Load a new game scene depending on your use-case
+        }
+    }
 
     public static void convert2DArray(List<int> v_grid)
     {

@@ -271,7 +271,16 @@ public class MakeObjectDraggable : MonoBehaviour
 
         if(multiplier == 4)
         {
-            Debug.LogError("YOU WIN.....HURRAY!!!");
+            GameObject entryDoorCanvas = GlobalVariables.entryDoor.transform.GetChild(0).gameObject;
+            GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
+            GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
+            GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
+            newGameButton.SetActive(true);
+            quitGameButton.SetActive(true);
+            entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN.....HURRAY!!! ";
+            GlobalVariables.entryDoor.SetActive(true);
+            GlobalVariables.v_solvableboard = false;
+            Debug.LogError("YOU WIN.....HURRAY!!! " + newGameButton.name);
         }
 
     }

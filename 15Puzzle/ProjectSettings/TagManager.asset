@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Tile
   - EmptyTile
+  - entryDoor
+  - newGame
+  - quitGame
   layers:
   - Default
   - TransparentFX

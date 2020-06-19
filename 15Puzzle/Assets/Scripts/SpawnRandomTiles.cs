@@ -8,25 +8,43 @@ public class SpawnRandomTiles : MonoBehaviour
     public GameObject v_OriginalTile;
     public bool v_onlyOnce = false;
     public int v_NumberOfTilesToSpawn = 0;
+    //public GameObject entryDoor;
     // Start is called before the first frame update
     void Start()
     {
         
         InstantiateTiles();
         v_onlyOnce = false;
-
+        GlobalVariables.entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        GlobalVariables.ticker();
+        if (GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
+        {
+            GlobalVariables.entryDoor.SetActive(false);
+        }
+
+
         if (GlobalVariables.v_NewGame)
         {
             //If a new game is requestion, then spawn new tiles to start game
+            Vector3 v_OriginalTilePos = v_OriginalTile.transform.position;
+            v_OriginalTilePos.x = -1.96f;
+            v_OriginalTilePos.y = 4.07f;
+            v_OriginalTilePos.z = 0.43f;
+            v_OriginalTile.transform.position = v_OriginalTilePos;
+            Debug.LogError("Inside new_game function in update");
+            v_onlyOnce = false;
+            GlobalVariables.v_solvableboard = false;
+            DestroyTiles();
+            v_OriginalTile.GetComponent<Tile>().resetVariables();
             InstantiateTiles();
-
-
+            GlobalVariables.entryDoor.SetActive(false);
+            GlobalVariables.v_NewGame = false;
 
         }
         //Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count);
@@ -75,6 +93,11 @@ public class SpawnRandomTiles : MonoBehaviour
                             GlobalVariables.v_solvableboard = true;
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                             GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
+                            //entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
+                            //if(GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
+                            //{
+                            //    entryDoor.SetActive(false);
+                            //}
                         }
                         else
                         {
@@ -125,6 +148,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             GlobalVariables.v_solvableboard = true;
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                             GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
+                         
                         }
                         else
                         {
