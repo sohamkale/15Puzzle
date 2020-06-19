@@ -8,6 +8,7 @@ public class SpawnRandomTiles : MonoBehaviour
     public GameObject v_OriginalTile;
     public bool v_onlyOnce = false;
     public int v_NumberOfTilesToSpawn = 0;
+    GameObject quitGameButton, newGameButton, entryDoorText, entryDoorCanvas;
     //public GameObject entryDoor;
     // Start is called before the first frame update
     void Start()
@@ -15,18 +16,50 @@ public class SpawnRandomTiles : MonoBehaviour
         
         InstantiateTiles();
         v_onlyOnce = false;
-        GlobalVariables.entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
-
+        GlobalVariables.v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
+        GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
+        GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
+        GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
+        GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        GlobalVariables.ticker();
+        if (Input.GetKeyDown("escape"))
+        {
+            
+            //if (GlobalVariables.v_escapeCount == 0)
+            //{                
+            //    newGameButton.SetActive(true);
+            //    quitGameButton.SetActive(true);
+            //    entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
+            //    GlobalVariables.v_entryDoor.SetActive(true);
+            //    GlobalVariables.v_solvableboard = false;
+            //    GlobalVariables.v_shouldTimePause = true;
+            //    GlobalVariables.v_escapeCount++;
+            //}else if(GlobalVariables.v_escapeCount == 1)
+            //{
+            //    newGameButton.SetActive(false);
+            //    quitGameButton.SetActive(false);
+            //    entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
+            //    GlobalVariables.v_entryDoor.SetActive(false);
+            //    GlobalVariables.v_solvableboard = true;
+            //    GlobalVariables.v_shouldTimePause = false;
+            //    GlobalVariables.v_escapeCount = 0;
+            //}
+            
+            Application.Quit();
+        }
+
+        GlobalVariables.tickerCountDown();
         if (GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
         {
-            GlobalVariables.entryDoor.SetActive(false);
+            GlobalVariables.v_entryDoor.SetActive(false);
+            GlobalVariables.tickerCountUp();
         }
+
+        //GlobalVariables.tickerCountUp();
 
 
         if (GlobalVariables.v_NewGame)
@@ -43,7 +76,8 @@ public class SpawnRandomTiles : MonoBehaviour
             DestroyTiles();
             v_OriginalTile.GetComponent<Tile>().resetVariables();
             InstantiateTiles();
-            GlobalVariables.entryDoor.SetActive(false);
+            GlobalVariables.v_entryDoor.SetActive(false);
+            GlobalVariables.v_timeElapsed = 0;
             GlobalVariables.v_NewGame = false;
 
         }

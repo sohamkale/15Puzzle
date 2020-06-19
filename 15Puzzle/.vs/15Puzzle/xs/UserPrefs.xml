@@ -1,12 +1,11 @@
 ﻿<Properties StartupConfiguration="{322A541A-6695-6B56-82C0-907C49D26169}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ButtonScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpawnRandomTiles.cs">
     <Files>
-      <File FileName="Assets/Scripts/GlobalVariables.cs" Line="29" Column="19" />
-      <File FileName="Assets/Scripts/Tile.cs" Line="6" Column="8" />
-      <File FileName="Assets/Scripts/SpawnRandomTiles.cs" Line="105" Column="61" />
-      <File FileName="Assets/Scripts/MakeObjectDraggable.cs" Line="269" Column="47" />
-      <File FileName="Assets/Scripts/convertto2dArray.cs" Line="14" Column="18" />
-      <File FileName="Assets/Scripts/ButtonScript.cs" Line="19" Column="19" />
+      <File FileName="Assets/Scripts/GlobalVariables.cs" Line="148" Column="2" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="132" Column="1" />
+      <File FileName="Assets/Scripts/SpawnRandomTiles.cs" Line="32" Column="1" />
+      <File FileName="Assets/Scripts/MakeObjectDraggable.cs" Line="9" Column="33" />
+      <File FileName="Assets/Scripts/ButtonScript.cs" Line="16" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +13,7 @@
           <Node name="15Puzzle" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="ButtonScript.cs" selected="True" />
+                <Node name="SpawnRandomTiles.cs" selected="True" />
               </Node>
             </Node>
           </Node>

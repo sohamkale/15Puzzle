@@ -9,6 +9,7 @@ TagManager:
   - entryDoor
   - newGame
   - quitGame
+  - timeElapsed
   layers:
   - Default
   - TransparentFX
