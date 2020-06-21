@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Tile
   - EmptyTile
+  - entryDoor
+  - newGame
+  - quitGame
+  - timeElapsed
   layers:
   - Default
   - TransparentFX

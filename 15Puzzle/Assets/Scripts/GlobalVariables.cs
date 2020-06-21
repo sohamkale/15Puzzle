@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public static class GlobalVariables
 {
@@ -23,6 +25,38 @@ public static class GlobalVariables
     
     public static int v_emptyTileNum = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad * 15 + 1);
 
+    public static float v_timeLeft = 1.0f;
+    public static float v_timeElapsed = 0.0f;
+    private static int v_timeElapsedHours = 0;
+    private static int v_timeElapsedMinutes = 0;
+    private static int v_timeElapsedseconds = 0;
+    public static bool v_shouldTimePause = false;
+    public static GameObject v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
+    public static GameObject v_timeText = GameObject.FindGameObjectWithTag("timeElapsed");
+    public static int v_escapeCount = 0;
+
+    public static void tickerCountDown()
+    {
+        v_timeLeft -= Time.deltaTime;
+        
+        if (v_timeLeft < 0)
+        {
+            //Do something useful or Load a new game scene depending on your use-case
+        }
+    }
+
+    public static void tickerCountUp()
+    {
+        if (!v_shouldTimePause)
+        {
+            v_timeElapsed += Time.deltaTime;
+        }       
+
+        //if (v_timeElapsed < 60)
+        //{
+            v_timeText.GetComponent<UnityEngine.UI.Text>().text = "Time: " + (v_timeElapsed).ToString("0") + " secs";
+        //}
+    }
 
     public static void convert2DArray(List<int> v_grid)
     {
