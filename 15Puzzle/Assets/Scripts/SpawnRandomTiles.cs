@@ -121,14 +121,14 @@ public class SpawnRandomTiles : MonoBehaviour
                         {
                             //Debug.Log("Total InversionCount: " + inversionCount);
                             v_onlyOnce = true;
-                            Debug.Log("solvable: " + inversionCount);
+                         //   Debug.Log("solvable: " + inversionCount);
                             GlobalVariables.v_solvableboard = true;
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                             GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
                         }
                         else
                         {
-                            Debug.Log("unsolvable: " + inversionCount);
+                         //   Debug.Log("unsolvable: " + inversionCount);
                             v_onlyOnce = false;
                             GlobalVariables.v_solvableboard = false;
                             GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -142,7 +142,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             v_OriginalTile.GetComponent<Tile>().resetVariables();
                             //Debug.Log("CLONED TILES ARAY AFTER DELETION: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
                             InstantiateTiles();
-                            Debug.Log("I am in the else  statement...Here I am ..." + GlobalVariables.v_clonedTiles[4].name);
+                         //   Debug.Log("I am in the else  statement...Here I am ..." + GlobalVariables.v_clonedTiles[4].name);
                         }
                         //Debug.Log("InversionCount: " + inversionCount);
                     }
@@ -159,7 +159,7 @@ public class SpawnRandomTiles : MonoBehaviour
         }
         else
         {
-            Debug.Log("Unmet condition? : " + GlobalVariables.v_grid.Count + " ::: " + v_onlyOnce);
+           // Debug.Log("Unmet condition? : " + GlobalVariables.v_grid.Count + " ::: " + v_onlyOnce);
         }
     }
 
