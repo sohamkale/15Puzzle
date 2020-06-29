@@ -84,7 +84,7 @@ public class Tile : MonoBehaviour
                 {
                     //Debug.Log("EMPTY TILE: " + v_TileID);
                     //DESTROY
-                    Debug.LogError("Deleting tile number: " + GlobalVariables.v_emptyTileNum);
+                   // Debug.LogError("Deleting tile number: " + GlobalVariables.v_emptyTileNum);
                     GlobalVariables.v_emptyTileObject = gameObject;
                     gameObject.SetActive(false);
                     gameObject.GetComponent<Tile>().v_TileID = 16;         //CHANGED

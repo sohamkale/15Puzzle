@@ -10,6 +10,7 @@ TagManager:
   - newGame
   - quitGame
   - timeElapsed
+  - GameBoard
   layers:
   - Default
   - TransparentFX

@@ -9,11 +9,12 @@ public class SpawnRandomTiles : MonoBehaviour
     public bool v_onlyOnce = false;
     public int v_NumberOfTilesToSpawn = 0;
     GameObject quitGameButton, newGameButton, entryDoorText, entryDoorCanvas;
+    
     //public GameObject entryDoor;
     // Start is called before the first frame update
     void Start()
     {
-        
+         
         InstantiateTiles();
         v_onlyOnce = false;
         GlobalVariables.v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
@@ -62,13 +63,13 @@ public class SpawnRandomTiles : MonoBehaviour
         //GlobalVariables.tickerCountUp();
 
 
-        if (GlobalVariables.v_NewGame)
+        if (GlobalVariables.v_NewGame )
         {
             //If a new game is requestion, then spawn new tiles to start game
             Vector3 v_OriginalTilePos = v_OriginalTile.transform.position;
-            v_OriginalTilePos.x = -1.96f;
-            v_OriginalTilePos.y = 4.07f;
-            v_OriginalTilePos.z = 0.43f;
+          //  v_OriginalTilePos.x = -1.96f;
+           // v_OriginalTilePos.y = 4.07f;
+          //  v_OriginalTilePos.z = 0.43f;
             v_OriginalTile.transform.position = v_OriginalTilePos;
             Debug.LogError("Inside new_game function in update");
             v_onlyOnce = false;
@@ -79,6 +80,7 @@ public class SpawnRandomTiles : MonoBehaviour
             GlobalVariables.v_entryDoor.SetActive(false);
             GlobalVariables.v_timeElapsed = 0;
             GlobalVariables.v_NewGame = false;
+            GlobalVariables.v_StartGame = true;
 
         }
         //Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count);
@@ -230,13 +232,42 @@ public class SpawnRandomTiles : MonoBehaviour
         for (int i = 0; i < v_NumberOfTilesToSpawn; i++)//Iterates through the desired number of tiles and spawns it.
         {
 
-            if (GlobalVariables.v_UserDifficultyLevel == "Beginner")//If the user is Intermediate level, we spawn 16 tile games (Including empty tile)
+            if (GlobalVariables.v_UserDifficultyLevel == "Hard")//If the user is Intermediate level, we spawn 16 tile games (Including empty tile)
             {
+                
                 GlobalVariables.v_NumberOfTilesToLoad = 16;
 
 
                 //Checks every 4th number, and makes the  5th number the new row
                 if (i % 4 == 0)
+                {
+                    v_xPosition = 0;
+                    if (v_NotFirstEntrance)
+                    {
+                        v_yPosition = v_yPosition - 1;
+                    }
+                    v_NotFirstEntrance = true;
+                }
+                //Changes X and Y position of the tile to make it spawn to theright or on a new roww
+                Vector3 v_tempPosition = new Vector3(v_OriginalTile.transform.position.x + v_xPosition, v_OriginalTile.transform.position.y + v_yPosition, v_OriginalTile.transform.position.z);
+                //Do not spawn first tile, since our master/original tile will always be on the board
+                if (i != 0)
+                {
+                    GameObject v_clonedTile = Instantiate(v_OriginalTile, v_tempPosition, Quaternion.identity);
+                    GlobalVariables.v_clonedTiles.Add(v_clonedTile);
+                    GlobalVariables.v_AllTiles1DList.Add(v_clonedTile);
+
+                }
+                //Increase position so we know where to spawn the next tile horizontally.
+                v_xPosition++;
+            }
+            else// Else it is easy mode
+            {
+                GlobalVariables.v_NumberOfTilesToLoad = 9;
+
+
+                //Checks every 4th number, and makes the  5th number the new row
+                if (i % 3 == 0)
                 {
                     v_xPosition = 0;
                     if (v_NotFirstEntrance)
