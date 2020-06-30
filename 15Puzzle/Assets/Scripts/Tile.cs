@@ -18,7 +18,9 @@ public class Tile : MonoBehaviour
         //Generates random ID between 1 -MaxNumOFTiles
         //v_TileID = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad + 1);
         //gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = v_TileID.ToString();
-
+        v_continueLoop = true;
+        v_matchFound = false;
+        v_shouldBeEmpty = false;
     }
     private void Update()
     {
