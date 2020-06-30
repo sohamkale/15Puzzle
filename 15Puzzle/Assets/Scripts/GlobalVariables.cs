@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public static class GlobalVariables
 {
 
-    public static string v_UserDifficultyLevel = "Beginner";
+    public static string v_UserDifficultyLevel = "Hard";
     //False by default (Initial start of game), controls the clearing of the game board
     public static bool v_NewGame;
     public static int v_NumberOfTilesToLoad = 1;
@@ -34,6 +34,7 @@ public static class GlobalVariables
     public static GameObject v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
     public static GameObject v_timeText = GameObject.FindGameObjectWithTag("timeElapsed");
     public static int v_escapeCount = 0;
+    public static bool v_StartGame=false;
 
     public static void tickerCountDown()
     {
