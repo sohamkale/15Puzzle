@@ -16,7 +16,6 @@ public class UpdateTileSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.LogError(v_doOnce);
         if (GlobalVariables.v_solvableboard && !v_doOnce)
         {
             int temp = gameObject.GetComponent<Tile>().v_TileID;
