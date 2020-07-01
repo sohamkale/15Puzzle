@@ -45,7 +45,7 @@ public static class GlobalVariables
     public static GameObject v_MainMenuPlayButton = GameObject.FindGameObjectWithTag("PlayButton");
     public static int v_escapeCount = 0;
     public static bool v_StartGame=false;
-
+    public static bool v_StartCounter = false;
     public static void tickerCountDown()
     {
         v_timeLeft -= Time.deltaTime;
@@ -58,7 +58,7 @@ public static class GlobalVariables
 
     public static void tickerCountUp()
     {
-        if (!v_shouldTimePause)
+        if (!v_shouldTimePause && v_StartCounter)
         {
             v_timeElapsed += Time.deltaTime;
         }

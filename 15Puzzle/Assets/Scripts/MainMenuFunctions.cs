@@ -20,6 +20,11 @@ public class MainMenuFunctions : MonoBehaviour
         //GlobalVariables.v_ColumnsLayout.SetActive(false);
     }
 
+    public void startCounter()
+    {
+        GlobalVariables.v_StartCounter = true;
+    }
+
     public void continuePressed()
     {
         GlobalVariables.v_continuePressed = true;
