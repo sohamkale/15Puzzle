@@ -22,48 +22,101 @@ public class SpawnRandomTiles : MonoBehaviour
         GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
         GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
         GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GlobalVariables.v_ClassicLayout != null && GlobalVariables.v_layout == "Classic")
+        {
+            GlobalVariables.v_ClassicLayout.SetActive(true);
+            GlobalVariables.v_UpsideDownLayout.SetActive(false);
+            GlobalVariables.v_ColumnsLayout.SetActive(false);
+
+        }
+        else if (GlobalVariables.v_UpsideDownLayout != null && GlobalVariables.v_layout == "UpsideDown")
+        {
+           
+            GlobalVariables.v_UpsideDownLayout.SetActive(true);
+            GlobalVariables.v_ClassicLayout.SetActive(false);
+            GlobalVariables.v_ColumnsLayout.SetActive(false);
+        }
+        else if (GlobalVariables.v_ColumnsLayout != null && GlobalVariables.v_layout == "Columns")
+        {
+            GlobalVariables.v_ColumnsLayout.SetActive(true);
+            GlobalVariables.v_ClassicLayout.SetActive(false);
+            GlobalVariables.v_UpsideDownLayout.SetActive(false);
+        }
+
+
+
         if (Input.GetKeyDown("escape"))
         {
-            
-            //if (GlobalVariables.v_escapeCount == 0)
-            //{                
-            //    newGameButton.SetActive(true);
-            //    quitGameButton.SetActive(true);
-            //    entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
-            //    GlobalVariables.v_entryDoor.SetActive(true);
-            //    GlobalVariables.v_solvableboard = false;
-            //    GlobalVariables.v_shouldTimePause = true;
-            //    GlobalVariables.v_escapeCount++;
-            //}else if(GlobalVariables.v_escapeCount == 1)
-            //{
-            //    newGameButton.SetActive(false);
-            //    quitGameButton.SetActive(false);
-            //    entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
-            //    GlobalVariables.v_entryDoor.SetActive(false);
-            //    GlobalVariables.v_solvableboard = true;
-            //    GlobalVariables.v_shouldTimePause = false;
-            //    GlobalVariables.v_escapeCount = 0;
-            //}
-            
-            Application.Quit();
+            Debug.LogError("Escape Pressed");
+
+            if (GlobalVariables.v_escapeCount == 0)
+            {
+                Debug.LogError(GlobalVariables.v_escapeCount);
+                //newGameButton.SetActive(true);
+                //quitGameButton.SetActive(true);
+                //entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
+                //GlobalVariables.v_entryDoor.SetActive(true);
+                //GlobalVariables.v_solvableboard = false;
+                GlobalVariables.v_shouldTimePause = true;
+                GlobalVariables.v_escapeCount++;
+                GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "PAUSED!!";
+                Debug.LogError(GlobalVariables.v_MainMenuContinueButton.name);
+                GlobalVariables.v_MainMenuContinueButton.SetActive(true);
+                GlobalVariables.v_MainMenuPlayButton.SetActive(false);
+                //GameObject MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+                GlobalVariables.v_MainMenu.SetActive(true);
+            }
+            else if (GlobalVariables.v_escapeCount == 1)
+            {
+
+                Debug.LogError(GlobalVariables.v_escapeCount);
+                //newGameButton.SetActive(false);
+                //quitGameButton.SetActive(false);
+                //entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
+                //GlobalVariables.v_entryDoor.SetActive(false);
+                //GlobalVariables.v_solvableboard = true;
+                GlobalVariables.v_shouldTimePause = false;
+                GlobalVariables.v_escapeCount = 0;
+                GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "15 PUZZLE";
+                GlobalVariables.v_MainMenuContinueButton.SetActive(false);
+                GlobalVariables.v_MainMenuPlayButton.SetActive(true);
+                //GameObject MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+                //MainMenu.SetActive(false);
+                GlobalVariables.v_MainMenu.SetActive(false);
+            }
+
+            //Application.Quit();
+        }
+
+        if (GlobalVariables.v_continuePressed)
+        {
+            GlobalVariables.v_shouldTimePause = false;
+            GlobalVariables.v_escapeCount = 0;
+            GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "15 PUZZLE";
+            GlobalVariables.v_MainMenuContinueButton.SetActive(false);
+            GlobalVariables.v_MainMenuPlayButton.SetActive(true);
+            GlobalVariables.v_continuePressed = false;
+            GlobalVariables.v_MainMenu.SetActive(false);
         }
 
         GlobalVariables.tickerCountDown();
         if (GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
         {
             GlobalVariables.v_entryDoor.SetActive(false);
+            GlobalVariables.v_MainTextMesh.SetActive(false);
             GlobalVariables.tickerCountUp();
         }
 
         //GlobalVariables.tickerCountUp();
 
 
-        if (GlobalVariables.v_NewGame )
+        if (GlobalVariables.v_NewGame)
         {
             //If a new game is requestion, then spawn new tiles to start game
             Vector3 v_OriginalTilePos = v_OriginalTile.transform.position;
@@ -77,16 +130,32 @@ public class SpawnRandomTiles : MonoBehaviour
             DestroyTiles();
             v_OriginalTile.GetComponent<Tile>().resetVariables();
             InstantiateTiles();
-            GlobalVariables.v_entryDoor.SetActive(false);
+            GlobalVariables.v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
+            GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
+            GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
+            GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
+            GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
+            //GameObject textMesh = entryDoorCanvas.transform.GetChild(3).gameObject;
+            //textMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "Please Wait while the game loads!!";
+            entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "Please Wait while the game loads!!";
+            GlobalVariables.v_MainTextMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "Please Wait while the game loads!!";
+            newGameButton.SetActive(false);
+            quitGameButton.SetActive(false);
+            GlobalVariables.v_entryDoor.SetActive(true);
+            GlobalVariables.v_MainTextMesh.SetActive(true);
             GlobalVariables.v_timeElapsed = 0;
             GlobalVariables.v_NewGame = false;
             GlobalVariables.v_StartGame = true;
+            GlobalVariables.v_timeLeft = 1.0f;
 
         }
         //Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count);
         //Debug.Log("V_ONLYONCE:::::::  " + v_onlyOnce);
         if ((!v_onlyOnce && GlobalVariables.v_NumberOfTilesToLoad == 16))
         {
+       
+
+
             List<int> v_newGrid = new List<int>();
             for (int b = 0; b < GlobalVariables.v_grid.Count; b++)
             {

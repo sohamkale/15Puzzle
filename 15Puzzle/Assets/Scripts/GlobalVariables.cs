@@ -8,6 +8,7 @@ public static class GlobalVariables
 {
 
     public static string v_UserDifficultyLevel = "Hard";
+    public static string v_layout = "Classic";
     //False by default (Initial start of game), controls the clearing of the game board
     public static bool v_NewGame;
     public static int v_NumberOfTilesToLoad = 1;
@@ -29,10 +30,19 @@ public static class GlobalVariables
     public static float v_timeElapsed = 0.0f;
     private static int v_timeElapsedHours = 0;
     private static int v_timeElapsedMinutes = 0;
-    private static int v_timeElapsedseconds = 0;
+    private static int v_timeElapsedSeconds = 0;
     public static bool v_shouldTimePause = false;
+    public static bool v_continuePressed = false;
     public static GameObject v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
     public static GameObject v_timeText = GameObject.FindGameObjectWithTag("timeElapsed");
+    public static GameObject v_MainMenu = GameObject.FindGameObjectWithTag("Menu");
+    public static GameObject v_MainMenuText = GameObject.FindGameObjectWithTag("MainMenuTitleText");
+    public static GameObject v_MainTextMesh = GameObject.FindGameObjectWithTag("MainTextMesh");
+    public static GameObject v_MainMenuContinueButton;
+    public static GameObject v_ClassicLayout;
+    public static GameObject v_UpsideDownLayout;
+    public static GameObject v_ColumnsLayout;
+    public static GameObject v_MainMenuPlayButton = GameObject.FindGameObjectWithTag("PlayButton");
     public static int v_escapeCount = 0;
     public static bool v_StartGame=false;
 
@@ -51,12 +61,34 @@ public static class GlobalVariables
         if (!v_shouldTimePause)
         {
             v_timeElapsed += Time.deltaTime;
-        }       
+        }
 
+        v_timeElapsedMinutes = (int) (v_timeElapsed / 60.0f);
+        v_timeElapsedSeconds = (int) v_timeElapsed % 60;
+        if(v_timeElapsedMinutes < 10)
+        {
+            if (v_timeElapsedSeconds < 10)
+            {
+                v_timeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Time: 0" + v_timeElapsedMinutes.ToString("0") + ":0" + (v_timeElapsedSeconds).ToString("0");
+            }
+            else
+            {
+                v_timeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Time: 0" + v_timeElapsedMinutes.ToString("0") + ":" + (v_timeElapsedSeconds).ToString("0");
+            }
+        }else
+        {
+            if (v_timeElapsedSeconds < 10)
+            {
+                v_timeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Time: " + v_timeElapsedMinutes.ToString("0") + ":0" + (v_timeElapsedSeconds).ToString("0");
+            }
+            else
+            {
+                v_timeText.GetComponent<TMPro.TextMeshProUGUI>().text = "Time: " + v_timeElapsedMinutes.ToString("0") + ":" + (v_timeElapsedSeconds).ToString("0");
+            }
+        }
+        
         //if (v_timeElapsed < 60)
-        //{
-            v_timeText.GetComponent<UnityEngine.UI.Text>().text = "Time: " + (v_timeElapsed).ToString("0") + " secs";
-        //}
+        
     }
 
     public static void convert2DArray(List<int> v_grid)

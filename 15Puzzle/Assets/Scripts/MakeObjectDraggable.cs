@@ -239,7 +239,23 @@ public class MakeObjectDraggable : MonoBehaviour
         GlobalVariables.v_AllTiles2DArray[emptyTileXIndex, emptyTileYIndex] = GlobalVariables.v_AllTiles2DArray[currTileXIndex, currTileYIndex];
         GlobalVariables.v_AllTiles2DArray[currTileXIndex, currTileYIndex] = v_temp1;
 
-        checkIfWon();
+        if(GlobalVariables.v_layout == "Classic")
+        {
+            checkIfWon();
+
+        }else if(GlobalVariables.v_layout == "UpsideDown")
+        {
+            checkIfWonReverse();
+        }
+        else if(GlobalVariables.v_layout == "Columns")
+        {
+            checkIfWonColumns();
+        }
+        else
+        {
+            checkIfWon();
+        }
+        
         c++;
     }
 
@@ -278,7 +294,9 @@ public class MakeObjectDraggable : MonoBehaviour
             newGameButton.SetActive(true);
             quitGameButton.SetActive(true);
             entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN.....HURRAY!!! ";
+            GlobalVariables.v_MainTextMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "YOU WIN.....HURRAY!!!";
             GlobalVariables.v_entryDoor.SetActive(true);
+            GlobalVariables.v_MainTextMesh.SetActive(true);
             GlobalVariables.v_solvableboard = false;
             Debug.LogError("YOU WIN.....HURRAY!!! " + newGameButton.name);
         }
@@ -315,6 +333,17 @@ public class MakeObjectDraggable : MonoBehaviour
 
         if (multiplier == 0)
         {
+            GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
+            GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
+            GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
+            GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
+            newGameButton.SetActive(true);
+            quitGameButton.SetActive(true);
+            entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN.....HURRAY!!! ";
+            GlobalVariables.v_MainTextMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "YOU WIN.....HURRAY!!!";
+            GlobalVariables.v_entryDoor.SetActive(true);
+            GlobalVariables.v_MainTextMesh.SetActive(true);
+            GlobalVariables.v_solvableboard = false;
             Debug.LogError("YOU WIN.....HURRAY!!!");
         }
 
@@ -349,6 +378,17 @@ public class MakeObjectDraggable : MonoBehaviour
 
         if (matchCount == 16)
         {
+            GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
+            GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
+            GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
+            GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
+            newGameButton.SetActive(true);
+            quitGameButton.SetActive(true);
+            entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "YOU WIN.....HURRAY!!! ";
+            GlobalVariables.v_MainTextMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "YOU WIN.....HURRAY!!!";
+            GlobalVariables.v_entryDoor.SetActive(true);
+            GlobalVariables.v_MainTextMesh.SetActive(true);
+            GlobalVariables.v_solvableboard = false;
             Debug.LogError("YOU WIN.....HURRAY!!!");
         }
 

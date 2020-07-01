@@ -11,6 +11,14 @@ TagManager:
   - quitGame
   - timeElapsed
   - GameBoard
+  - MainTextMesh
+  - Menu
+  - MainMenuTitleText
+  - PlayButton
+  - ContinueButton
+  - ClassicLayout
+  - UpsideDownLayout
+  - ColumnsLayout
   layers:
   - Default
   - TransparentFX

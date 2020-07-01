@@ -26,4 +26,24 @@ public class LevelChanger : MonoBehaviour
         v_gameBoard.transform.GetChild(0).gameObject.SetActive(true);
 
     }
+
+    public void classicMode()
+    {
+        GlobalVariables.v_layout= "Classic";
+
+    }
+
+    public void upsideDownMode()
+    {
+        GlobalVariables.v_layout = "UpsideDown";
+
+    }
+
+    public void columnsMode()
+    {
+        GlobalVariables.v_layout = "Columns";
+
+    }
+
+
 }
