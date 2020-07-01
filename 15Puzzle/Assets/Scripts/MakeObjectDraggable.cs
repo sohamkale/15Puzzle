@@ -12,12 +12,14 @@ public class MakeObjectDraggable : MonoBehaviour
     int i, j;
     private void OnMouseDown()
     {
+        Debug.LogError("----------------------------------------------------------------------------------------------------------");
+        GlobalVariables.displayAllTiles();
         //v_zCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         //v_Offset = gameObject.transform.position - GetMouseWorldPos();
         emptyTile = GlobalVariables.v_emptyTileObject;
 
         v_clickedTileId = gameObject.GetComponent<Tile>().v_TileID;
-        //Debug.LogError("Inside MouseDown method - Tile clicked: " + v_clickedTileId + " Empty Tile ID: " + emptyTile.GetComponent<Tile>().v_TileID);
+        Debug.LogError("Inside MouseDown method - Tile clicked: " + v_clickedTileId + " Empty Tile ID: " + emptyTile.GetComponent<Tile>().v_TileID);
         for(int a = 0; a < GlobalVariables.v_gridWidth; a++)
         {
             for(int b = 0; b < GlobalVariables.v_gridWidth; b++)
@@ -34,7 +36,7 @@ public class MakeObjectDraggable : MonoBehaviour
 
         if ((j - 1) >= 0 && (j - 1) < GlobalVariables.v_gridWidth && GlobalVariables.v_2Dlist[i, j - 1] == -1)
         {
-            //Debug.LogError("Match Found (Left): " + i + "," + (j - 1));
+            Debug.LogError("Match Found (Left): " + i + "," + (j - 1));
             
 
             //make a function for this
@@ -50,7 +52,7 @@ public class MakeObjectDraggable : MonoBehaviour
         }
         else if ((j + 1) >= 0 && (j + 1) < GlobalVariables.v_gridWidth && GlobalVariables.v_2Dlist[i, j + 1] == -1)
         {
-            //Debug.LogError("Match Found (right): " + i + "," + (j + 1));
+            Debug.LogError("Match Found (right): " + i + "," + (j + 1));
             Vector3 pos2 = gameObject.transform.position;
             Vector3 emptyTilePos2 = pos2;
             pos2.x = pos2.x + 1;
@@ -62,7 +64,7 @@ public class MakeObjectDraggable : MonoBehaviour
         }
         else if ((i - 1) >= 0 && (i - 1) < GlobalVariables.v_gridWidth && GlobalVariables.v_2Dlist[i - 1, j] == -1)
         {
-            //Debug.LogError("Match Found (up): " + (i - 1) + "," + (j));
+            Debug.LogError("Match Found (up): " + (i - 1) + "," + (j));
             
             Vector3 pos3 = gameObject.transform.position;
             Vector3 emptyTilePos3 = pos3;
@@ -74,7 +76,7 @@ public class MakeObjectDraggable : MonoBehaviour
         }
         else if ((i + 1) >= 0 && (i + 1) < GlobalVariables.v_gridWidth && GlobalVariables.v_2Dlist[i + 1, j] == -1)
         {
-            //Debug.LogError("Match Found (down): " + (i + 1) + "," + (j));
+            Debug.LogError("Match Found (down): " + (i + 1) + "," + (j));
             
             Vector3 pos4 = gameObject.transform.position;
             Vector3 emptyTilePos4 = pos4;
@@ -117,9 +119,9 @@ public class MakeObjectDraggable : MonoBehaviour
       
                             Swap2DListVars(i, (j - b), i, (j - b - 1));
                         }
-                        //GlobalVariables.displayAllTiles();
-                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        //GlobalVariables.displayAll();
+                        GlobalVariables.displayAllTiles();
+                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        GlobalVariables.displayAll();
                         break;
                         
                     }
@@ -144,9 +146,9 @@ public class MakeObjectDraggable : MonoBehaviour
                             //Swap2DListVars(i, (j + a - (b + 1)), i, (a - b)); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
                             Swap2DListVars(i, (j + b), i, (j + b + 1));
                         }
-                        //GlobalVariables.displayAllTiles();
-                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        //GlobalVariables.displayAll();
+                        GlobalVariables.displayAllTiles();
+                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        GlobalVariables.displayAll();
                         break;
                        
                     }
@@ -175,9 +177,9 @@ public class MakeObjectDraggable : MonoBehaviour
                             //Swap2DListVars((GlobalVariables.v_gridWidth + dist + b), j, (a + b), j); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
                             Swap2DListVars(((i - b)), j, (i - b - 1), j);
                         }
-                        //GlobalVariables.displayAllTiles();
-                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        //GlobalVariables.displayAll();
+                        GlobalVariables.displayAllTiles();
+                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        GlobalVariables.displayAll();
                         break;
                         //GlobalVariables.displayAll();
                         //Debug.LogError("In else dist is negative: " + a + "," + j + " ::: " + dist);
@@ -201,9 +203,9 @@ public class MakeObjectDraggable : MonoBehaviour
                             //Swap2DListVars((i + a - (b + 1)), j, (a - b), j); //THIS IS WRONG CHANGE THIS IF POSSIBLE. THIS IS MESSING EVERYTHING UP
                             Swap2DListVars((i + b), j, (i + b + 1), j);
                         }
-                        //GlobalVariables.displayAllTiles();
-                        //Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                        //GlobalVariables.displayAll();
+                        GlobalVariables.displayAllTiles();
+                        Debug.LogError(":::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+                        GlobalVariables.displayAll();
                         break;
                         
                     }
@@ -211,9 +213,9 @@ public class MakeObjectDraggable : MonoBehaviour
                     
                 }
             }
-            
-            //Debug.LogError("Match Not Found: " + v_clickedTileId + "Tile x: " + i + " Tile y: " + j);
-            //GlobalVariables.display();
+
+            Debug.LogError("Match Not Found: " + v_clickedTileId + "Tile x: " + i + " Tile y: " + j);
+            GlobalVariables.display();
         }
     }
     private Vector3 GetMouseWorldPos()

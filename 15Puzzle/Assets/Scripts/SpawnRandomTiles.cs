@@ -149,9 +149,9 @@ public class SpawnRandomTiles : MonoBehaviour
             GlobalVariables.v_timeLeft = 1.0f;
 
         }
-        //Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count);
+        Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count + " " + GlobalVariables.v_NumberOfTilesToLoad);
         //Debug.Log("V_ONLYONCE:::::::  " + v_onlyOnce);
-        if ((!v_onlyOnce && GlobalVariables.v_NumberOfTilesToLoad == 16))
+        if ((!v_onlyOnce && GlobalVariables.v_NumberOfTilesToLoad == 16) || (!v_onlyOnce && GlobalVariables.v_NumberOfTilesToLoad == 9))
         {
        
 

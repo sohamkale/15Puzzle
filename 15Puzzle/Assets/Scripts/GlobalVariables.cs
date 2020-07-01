@@ -24,7 +24,7 @@ public static class GlobalVariables
     public static List<GameObject> v_AllTiles1DList = new List<GameObject>(); //THE list of all tiles
     public static GameObject[,] v_AllTiles2DArray = new GameObject[v_gridWidth, v_gridWidth]; //THE 2D Array for TILES
     
-    public static int v_emptyTileNum = (int)UnityEngine.Random.Range(1, GlobalVariables.v_NumberOfTilesToLoad * 15 + 1);
+    public static int v_emptyTileNum = 0;
 
     public static float v_timeLeft = 1.0f;
     public static float v_timeElapsed = 0.0f;
@@ -95,6 +95,7 @@ public static class GlobalVariables
     {
         int count = 0;
         List<int> v_tempArray = new List<int>();
+        Debug.LogError("v_gridWidth: " + v_gridWidth);
         for (int i = 0; i < v_grid.Count; i++)
         {
             v_tempArray.Add(v_grid[i]);
@@ -119,6 +120,7 @@ public static class GlobalVariables
     {
         int count = 0;
         List<GameObject> v_tempArray = new List<GameObject>();
+        Debug.LogError("v_gridWidth: " + v_gridWidth);
         for (int i = 0; i < v_AllTiles1DList.Count; i++)
         {
             v_tempArray.Add(v_AllTiles1DList[i]);
