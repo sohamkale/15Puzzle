@@ -18,6 +18,11 @@ public class MainMenuFunctions : MonoBehaviour
 
         GlobalVariables.v_ColumnsLayout = GameObject.FindGameObjectWithTag("ColumnsLayout");
         //GlobalVariables.v_ColumnsLayout.SetActive(false);
+
+        GlobalVariables.v_ClassicEasyLayout = GameObject.FindGameObjectWithTag("ClassicEasyLayout");
+        //GlobalVariables.v_ClassicLayout.SetActive(false);
+
+        GlobalVariables.v_UpsideDownEasyLayout = GameObject.FindGameObjectWithTag("UpsideDownEasyLayout");
     }
 
     public void startCounter()

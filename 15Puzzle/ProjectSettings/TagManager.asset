@@ -19,6 +19,8 @@ TagManager:
   - ClassicLayout
   - UpsideDownLayout
   - ColumnsLayout
+  - UpsideDownEasyLayout
+  - ClassicEasyLayout
   layers:
   - Default
   - TransparentFX

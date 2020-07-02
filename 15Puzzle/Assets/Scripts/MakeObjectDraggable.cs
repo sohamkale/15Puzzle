@@ -265,29 +265,34 @@ public class MakeObjectDraggable : MonoBehaviour
     {
         int matchCount = 0;
         int multiplier = 0;
-        for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
+        if (GlobalVariables.v_NumberOfTilesToLoad == 9)
         {
-            for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
+            for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
             {
-                if(GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * 4) + (j + 1)))
+                for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
                 {
-                    matchCount++;
+                    if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * GlobalVariables.v_gridWidth) + (j + 1)))
+                    {
+                        matchCount++;
+                    }
+                    //Debug.LogError("Count [" + i + "," + j + "] : " + GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID);
                 }
-                //Debug.LogError("Count [" + i + "," + j + "] : " + GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID);
+                if (matchCount == GlobalVariables.v_gridWidth)
+                {
+                    matchCount = 0;
+                    multiplier++;
+                }
+                else
+                {
+                    matchCount = 0;
+                    multiplier = 0;
+                }
+                //Debug.LogError("NEW ROW: " + i);
             }
-            if(matchCount == 4)
-            {
-                matchCount = 0;
-                multiplier++;
-            }else
-            {
-                matchCount = 0;
-                multiplier = 0;
-            }
-            //Debug.LogError("NEW ROW: " + i);
+
         }
 
-        if(multiplier == 4)
+        if(multiplier == GlobalVariables.v_gridWidth)
         {
             GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
             GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
@@ -308,18 +313,18 @@ public class MakeObjectDraggable : MonoBehaviour
     private void checkIfWonReverse()
     {
         int matchCount = 0;
-        int multiplier = 4;
+        int multiplier = GlobalVariables.v_gridWidth;
         for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
         {
             for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
             {
-                if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * 4) - (j)))
+                if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * GlobalVariables.v_gridWidth) - (j)))
                 {
                     matchCount++;
                 }
                 //Debug.LogError("Count [" + i + "," + j + "] : " + GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID);
             }
-            if (matchCount == 4)
+            if (matchCount == GlobalVariables.v_gridWidth)
             {
                 matchCount = 0;
                 multiplier--;
@@ -328,7 +333,7 @@ public class MakeObjectDraggable : MonoBehaviour
             else
             {
                 matchCount = 0;
-                multiplier = 4;
+                multiplier = GlobalVariables.v_gridWidth;
             }
             
         }
@@ -359,14 +364,14 @@ public class MakeObjectDraggable : MonoBehaviour
         {
             for (int j = 0; j < GlobalVariables.v_gridWidth; j++)
             {
-                if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * 4) + (i + 1)))
+                if (GlobalVariables.v_AllTiles2DArray[i, j].GetComponent<Tile>().v_TileID == ((multiplier * GlobalVariables.v_gridWidth) + (i + 1)))
                 {
                     multiplier++;
                     matchCount++;
                 }
                 
             }
-            if (multiplier == 4)
+            if (multiplier == GlobalVariables.v_gridWidth)
             {
                 //matchCount = 0;
                 multiplier = 0;
@@ -377,8 +382,8 @@ public class MakeObjectDraggable : MonoBehaviour
                 multiplier = 0;
             }
         }
-
-        if (matchCount == 16)
+        Debug.LogError("MatchCount: " + matchCount);
+        if (matchCount == GlobalVariables.v_NumberOfTilesToLoad)
         {
             GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
             GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;

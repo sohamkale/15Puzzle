@@ -41,6 +41,8 @@ public static class GlobalVariables
     public static GameObject v_MainMenuContinueButton;
     public static GameObject v_ClassicLayout;
     public static GameObject v_UpsideDownLayout;
+    public static GameObject v_ClassicEasyLayout;
+    public static GameObject v_UpsideDownEasyLayout;
     public static GameObject v_ColumnsLayout;
     public static GameObject v_MainMenuPlayButton = GameObject.FindGameObjectWithTag("PlayButton");
     public static int v_escapeCount = 0;

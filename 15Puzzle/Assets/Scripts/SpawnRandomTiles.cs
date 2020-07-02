@@ -28,25 +28,48 @@ public class SpawnRandomTiles : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GlobalVariables.v_ClassicLayout != null && GlobalVariables.v_layout == "Classic")
+        if (GlobalVariables.v_ClassicLayout != null && GlobalVariables.v_layout == "Classic" && GlobalVariables.v_UserDifficultyLevel == "Hard")
         {
             GlobalVariables.v_ClassicLayout.SetActive(true);
             GlobalVariables.v_UpsideDownLayout.SetActive(false);
             GlobalVariables.v_ColumnsLayout.SetActive(false);
+            GlobalVariables.v_ClassicEasyLayout.SetActive(false);
+            GlobalVariables.v_UpsideDownEasyLayout.SetActive(false);
 
         }
-        else if (GlobalVariables.v_UpsideDownLayout != null && GlobalVariables.v_layout == "UpsideDown")
+        else if (GlobalVariables.v_UpsideDownLayout != null && GlobalVariables.v_layout == "UpsideDown" && GlobalVariables.v_UserDifficultyLevel == "Hard")
         {
            
             GlobalVariables.v_UpsideDownLayout.SetActive(true);
             GlobalVariables.v_ClassicLayout.SetActive(false);
             GlobalVariables.v_ColumnsLayout.SetActive(false);
+            GlobalVariables.v_ClassicEasyLayout.SetActive(false);
+            GlobalVariables.v_UpsideDownEasyLayout.SetActive(false);
         }
-        else if (GlobalVariables.v_ColumnsLayout != null && GlobalVariables.v_layout == "Columns")
+        else if (GlobalVariables.v_ColumnsLayout != null && GlobalVariables.v_layout == "Columns" && GlobalVariables.v_UserDifficultyLevel == "Hard")
         {
             GlobalVariables.v_ColumnsLayout.SetActive(true);
             GlobalVariables.v_ClassicLayout.SetActive(false);
             GlobalVariables.v_UpsideDownLayout.SetActive(false);
+            GlobalVariables.v_ClassicEasyLayout.SetActive(false);
+            GlobalVariables.v_UpsideDownEasyLayout.SetActive(false);
+        }
+        else if (GlobalVariables.v_ClassicEasyLayout != null && GlobalVariables.v_layout == "Classic" && GlobalVariables.v_UserDifficultyLevel == "Easy")
+        {
+            GlobalVariables.v_ClassicEasyLayout.SetActive(true);
+            GlobalVariables.v_ClassicLayout.SetActive(false);
+            GlobalVariables.v_UpsideDownLayout.SetActive(false);
+            GlobalVariables.v_UpsideDownEasyLayout.SetActive(false);
+            GlobalVariables.v_ColumnsLayout.SetActive(false);
+
+        }
+        else if (GlobalVariables.v_UpsideDownEasyLayout != null && GlobalVariables.v_layout == "UpsideDown" && GlobalVariables.v_UserDifficultyLevel == "Easy")
+        {
+            GlobalVariables.v_UpsideDownEasyLayout.SetActive(true);
+            GlobalVariables.v_UpsideDownLayout.SetActive(false);
+            GlobalVariables.v_ClassicLayout.SetActive(false);
+            GlobalVariables.v_ColumnsLayout.SetActive(false);
+            GlobalVariables.v_ClassicEasyLayout.SetActive(false);
         }
 
 
@@ -175,9 +198,9 @@ public class SpawnRandomTiles : MonoBehaviour
                     emptyTileRow = ((double)a) / Math.Sqrt(GlobalVariables.v_NumberOfTilesToLoad);
                     emptyTileRow = Math.Sqrt(GlobalVariables.v_NumberOfTilesToLoad) - Math.Floor(emptyTileRow);
                     int inversionCount = 0;
-                    if ((int)(emptyTileRow % 2) == 0) //even row
+                    if (GlobalVariables.v_gridWidth % 2 == 1)
                     {
-                        Debug.Log("Even Row: " + emptyTileRow);
+                        Debug.LogError("I am odd width");
                         for (int c = 0; c < v_newGrid.Count; c++)
                         {
                             for (int d = c + 1; d < v_newGrid.Count; d++)
@@ -190,61 +213,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             }
                             Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
                         }
-                        if (inversionCount % 2 == 1) //If inversions are odd then solvable
-                        {
-                            Debug.Log("InversionCount: " + inversionCount);
-                            v_onlyOnce = true;
-                            Debug.Log("solvable: " + inversionCount);
-                            GlobalVariables.v_solvableboard = true;
-                            GlobalVariables.convert2DArray(GlobalVariables.v_grid);
-                            GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
-                            //entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
-                            //if(GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
-                            //{
-                            //    entryDoor.SetActive(false);
-                            //}
-                        }
-                        else
-                        {
-                            Debug.Log("unsolvable: " + inversionCount);
-                            
-                            v_onlyOnce = false;
-                            GlobalVariables.v_solvableboard = false;
-                            GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
-                            //for (int i = 0; i < tiles.Length; i++)//Iterates through the desired number of tiles and deletes it.
-                            //{
-                            //    //Debug.Log(gameObject);
-                            //    Destroy(tiles[i]);
-                            //}
-                            //Debug.Log("CLONED TILES ARAY B4 DELETION: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
-                            DestroyTiles();
-                            //Debug.Log("CLONED TILES AFTER ARAY: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
-                            //Reset ORiginal  Tile variables
 
-                            v_OriginalTile.GetComponent<Tile>().resetVariables();
-                            InstantiateTiles();
-                            Debug.Log("I am in the if statement...HERE I WAS?" + GlobalVariables.v_clonedTiles[5].name);
-                        }
-
-
-                    }
-                    else if ((int)(emptyTileRow % 2) == 1) //odd row
-                    {
-                        Debug.Log("Odd Row: " + emptyTileRow);
-                        for (int c = 0; c < v_newGrid.Count; c++)
-                        {
-                            for (int d = c + 1; d < v_newGrid.Count; d++)
-                            {
-                                if (d < v_newGrid.Count && v_newGrid[c] > v_newGrid[d])
-                                {
-                                    inversionCount++;
-                                }
-
-                            }
-                            Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
-
-
-                        }
                         if (inversionCount % 2 == 0) //If inversions are even then solvable
                         {
                             Debug.Log("Total InversionCount: " + inversionCount);
@@ -253,7 +222,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             GlobalVariables.v_solvableboard = true;
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                             GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
-                         
+
                         }
                         else
                         {
@@ -271,15 +240,117 @@ public class SpawnRandomTiles : MonoBehaviour
                             v_OriginalTile.GetComponent<Tile>().resetVariables();
                             //Debug.Log("CLONED TILES ARAY AFTER DELETION: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
                             InstantiateTiles();
-                         //   Debug.Log("I am in the else  statement...Here I am ..." + GlobalVariables.v_clonedTiles[4].name);
+                            //   Debug.Log("I am in the else  statement...Here I am ..." + GlobalVariables.v_clonedTiles[4].name);
                         }
-                        //Debug.Log("InversionCount: " + inversionCount);
                     }
-                    else
+                    else if (GlobalVariables.v_gridWidth % 2 == 0)
                     {
-                        //Debug.Log("In else block: " + emptyTileRow + " " + emptyTileRow % 2);
-                    }
+                        Debug.LogError("I am even width");
+                        if ((int)(emptyTileRow % 2) == 0) //even row
+                        {
+                            Debug.Log("Even Row: " + emptyTileRow);
+                            for (int c = 0; c < v_newGrid.Count; c++)
+                            {
+                                for (int d = c + 1; d < v_newGrid.Count; d++)
+                                {
+                                    if (d < v_newGrid.Count && v_newGrid[c] > v_newGrid[d])
+                                    {
+                                        inversionCount++;
+                                    }
 
+                                }
+                                Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
+                            }
+                            if (inversionCount % 2 == 1) //If inversions are odd then solvable
+                            {
+                                Debug.Log("InversionCount: " + inversionCount);
+                                v_onlyOnce = true;
+                                Debug.Log("solvable: " + inversionCount);
+                                GlobalVariables.v_solvableboard = true;
+                                GlobalVariables.convert2DArray(GlobalVariables.v_grid);
+                                GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
+                                //entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
+                                //if(GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
+                                //{
+                                //    entryDoor.SetActive(false);
+                                //}
+                            }
+                            else
+                            {
+                                Debug.Log("unsolvable: " + inversionCount);
+
+                                v_onlyOnce = false;
+                                GlobalVariables.v_solvableboard = false;
+                                GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+                                //for (int i = 0; i < tiles.Length; i++)//Iterates through the desired number of tiles and deletes it.
+                                //{
+                                //    //Debug.Log(gameObject);
+                                //    Destroy(tiles[i]);
+                                //}
+                                //Debug.Log("CLONED TILES ARAY B4 DELETION: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
+                                DestroyTiles();
+                                //Debug.Log("CLONED TILES AFTER ARAY: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
+                                //Reset ORiginal  Tile variables
+
+                                v_OriginalTile.GetComponent<Tile>().resetVariables();
+                                InstantiateTiles();
+                                Debug.Log("I am in the if statement...HERE I WAS?" + GlobalVariables.v_clonedTiles[5].name);
+                            }
+
+
+                        }
+                        else if ((int)(emptyTileRow % 2) == 1) //odd row
+                        {
+                            Debug.Log("Odd Row: " + emptyTileRow);
+                            for (int c = 0; c < v_newGrid.Count; c++)
+                            {
+                                for (int d = c + 1; d < v_newGrid.Count; d++)
+                                {
+                                    if (d < v_newGrid.Count && v_newGrid[c] > v_newGrid[d])
+                                    {
+                                        inversionCount++;
+                                    }
+
+                                }
+                                Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
+
+
+                            }
+                            if (inversionCount % 2 == 0) //If inversions are even then solvable
+                            {
+                                Debug.Log("Total InversionCount: " + inversionCount);
+                                v_onlyOnce = true;
+                                Debug.Log("solvable: " + inversionCount);
+                                GlobalVariables.v_solvableboard = true;
+                                GlobalVariables.convert2DArray(GlobalVariables.v_grid);
+                                GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
+
+                            }
+                            else
+                            {
+                                Debug.Log("unsolvable: " + inversionCount);
+                                v_onlyOnce = false;
+                                GlobalVariables.v_solvableboard = false;
+                                GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+                                //for (int i = 0; i < tiles.Length; i++)//Iterates through the desired number of tiles and deletes it.
+                                //{
+                                //    //Debug.Log(gameObject);
+                                //    Destroy(tiles[i]);
+                                //}
+                                //Debug.Log("CLONED TILES ARAY b4 DELETION: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
+                                DestroyTiles();
+                                v_OriginalTile.GetComponent<Tile>().resetVariables();
+                                //Debug.Log("CLONED TILES ARAY AFTER DELETION: " + GlobalVariables.v_clonedTiles.Count + " TILe NUMebR geneRATES: " + GlobalVariables.v_TileNumberGenerated.Length);
+                                InstantiateTiles();
+                                //   Debug.Log("I am in the else  statement...Here I am ..." + GlobalVariables.v_clonedTiles[4].name);
+                            }
+                            //Debug.Log("InversionCount: " + inversionCount);
+                        }
+                        else
+                        {
+                            //Debug.Log("In else block: " + emptyTileRow + " " + emptyTileRow % 2);
+                        }
+                    }
                 }
 
             }
