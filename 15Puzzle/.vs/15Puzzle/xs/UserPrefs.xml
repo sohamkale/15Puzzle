@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{322A541A-6695-6B56-82C0-907C49D26169}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GlobalVariables.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MakeObjectDraggable.cs">
     <Files>
-      <File FileName="Assets/Scripts/GlobalVariables.cs" Line="100" Column="35" />
-      <File FileName="Assets/Scripts/Tile.cs" Line="166" Column="6" />
-      <File FileName="Assets/Scripts/SpawnRandomTiles.cs" Line="260" Column="59" />
-      <File FileName="Assets/Scripts/MakeObjectDraggable.cs" Line="15" Column="134" />
-      <File FileName="Assets/Scripts/ButtonScript.cs" Line="16" Column="9" />
-      <File FileName="Assets/Scripts/UpdateTileSprite.cs" Line="19" Column="13" />
-      <File FileName="Assets/Scripts/LevelChanger.cs" Line="34" Column="1" />
+      <File FileName="Assets/Scripts/GlobalVariables.cs" Line="35" Column="5" />
+      <File FileName="Assets/Scripts/Tile.cs" Line="99" Column="24" />
+      <File FileName="Assets/Scripts/SpawnRandomTiles.cs" Line="347" Column="35" />
+      <File FileName="Assets/Scripts/MakeObjectDraggable.cs" Line="19" Column="10" />
+      <File FileName="Assets/Scripts/ButtonScript.cs" Line="35" Column="57" />
+      <File FileName="Assets/Scripts/UpdateTileSprite.cs" Line="22" Column="15" />
+      <File FileName="Assets/Scripts/LevelChanger.cs" Line="61" Column="51" />
       <File FileName="Assets/Scripts/VolumeValueChange.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/MainMenuFunctions.cs" Line="25" Column="47" />
+      <File FileName="Assets/Scripts/MainMenuFunctions.cs" Line="44" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,7 +17,7 @@
           <Node name="15Puzzle" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="GlobalVariables.cs" selected="True" />
+                <Node name="MakeObjectDraggable.cs" selected="True" />
               </Node>
               <Node name="Sprites" expanded="True" />
             </Node>

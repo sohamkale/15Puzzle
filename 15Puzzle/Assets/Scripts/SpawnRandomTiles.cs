@@ -9,6 +9,7 @@ public class SpawnRandomTiles : MonoBehaviour
     public bool v_onlyOnce = false;
     public int v_NumberOfTilesToSpawn = 0;
     GameObject quitGameButton, newGameButton, entryDoorText, entryDoorCanvas;
+    public UpdateTileSprite updateTileSpriteObject;
     
     //public GameObject entryDoor;
     // Start is called before the first frame update
@@ -76,11 +77,11 @@ public class SpawnRandomTiles : MonoBehaviour
 
         if (Input.GetKeyDown("escape"))
         {
-            Debug.LogError("Escape Pressed");
+            //Debug.LogError("Escape Pressed");
 
             if (GlobalVariables.v_escapeCount == 0)
             {
-                Debug.LogError(GlobalVariables.v_escapeCount);
+                //Debug.LogError(GlobalVariables.v_escapeCount);
                 //newGameButton.SetActive(true);
                 //quitGameButton.SetActive(true);
                 //entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
@@ -89,7 +90,7 @@ public class SpawnRandomTiles : MonoBehaviour
                 GlobalVariables.v_shouldTimePause = true;
                 GlobalVariables.v_escapeCount++;
                 GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "PAUSED!!";
-                Debug.LogError(GlobalVariables.v_MainMenuContinueButton.name);
+                //Debug.LogError(GlobalVariables.v_MainMenuContinueButton.name);
                 GlobalVariables.v_MainMenuContinueButton.SetActive(true);
                 GlobalVariables.v_MainMenuPlayButton.SetActive(false);
                 //GameObject MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
@@ -98,7 +99,7 @@ public class SpawnRandomTiles : MonoBehaviour
             else if (GlobalVariables.v_escapeCount == 1)
             {
 
-                Debug.LogError(GlobalVariables.v_escapeCount);
+                //Debug.LogError(GlobalVariables.v_escapeCount);
                 //newGameButton.SetActive(false);
                 //quitGameButton.SetActive(false);
                 //entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "PAUSED!!!";
@@ -129,7 +130,7 @@ public class SpawnRandomTiles : MonoBehaviour
         }
 
         GlobalVariables.tickerCountDown();
-        if (GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard)
+        if (GlobalVariables.v_timeLeft <= 0 && GlobalVariables.v_solvableboard && GlobalVariables.v_shouldEntryDoorBeInActive)
         {
             GlobalVariables.v_entryDoor.SetActive(false);
             GlobalVariables.v_MainTextMesh.SetActive(false);
@@ -143,24 +144,38 @@ public class SpawnRandomTiles : MonoBehaviour
         {
             //If a new game is requestion, then spawn new tiles to start game
             Vector3 v_OriginalTilePos = v_OriginalTile.transform.position;
-            v_OriginalTilePos.x = -1.49f;
-            v_OriginalTilePos.y = 3.91f;
-            v_OriginalTilePos.z = 0.43f;
+            if(GlobalVariables.v_UserDifficultyLevel == "Easy")
+            {
+                v_OriginalTilePos.x = -0.94f;
+                v_OriginalTilePos.y = 3.4f; 
+                v_OriginalTilePos.z = 0.43f; 
+            }
+            else
+            {
+                v_OriginalTilePos.x = -1.49f; //-1.09
+                v_OriginalTilePos.y = 3.91f; //3.4
+                v_OriginalTilePos.z = 0.43f; //0.43
+            }
+         
             v_OriginalTile.transform.position = v_OriginalTilePos;
-            Debug.LogError("Inside new_game function in update");
+            
             v_onlyOnce = false;
             GlobalVariables.v_solvableboard = false;
             DestroyTiles();
             v_OriginalTile.GetComponent<Tile>().resetVariables();
             InstantiateTiles();
+            Debug.LogError("Inside new_game function in update");
+
             GlobalVariables.v_entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
             GameObject entryDoorCanvas = GlobalVariables.v_entryDoor.transform.GetChild(0).gameObject;
             GameObject entryDoorText = entryDoorCanvas.transform.GetChild(0).gameObject;
+
             GameObject newGameButton = entryDoorCanvas.transform.GetChild(1).gameObject;
             GameObject quitGameButton = entryDoorCanvas.transform.GetChild(2).gameObject;
             //GameObject textMesh = entryDoorCanvas.transform.GetChild(3).gameObject;
             //textMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "Please Wait while the game loads!!";
             entryDoorText.GetComponent<UnityEngine.UI.Text>().text = "Please Wait while the game loads!!";
+            //Debug.LogError("END OF NEW GAME REACHED---------------------------------------");
             GlobalVariables.v_MainTextMesh.GetComponent<TMPro.TextMeshProUGUI>().text = "Please Wait while the game loads!!";
             newGameButton.SetActive(false);
             quitGameButton.SetActive(false);
@@ -172,13 +187,11 @@ public class SpawnRandomTiles : MonoBehaviour
             GlobalVariables.v_timeLeft = 1.0f;
 
         }
-        Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count + " " + GlobalVariables.v_NumberOfTilesToLoad);
+        //Debug.Log("V_GRID::::: " + GlobalVariables.v_grid.Count + " " + GlobalVariables.v_NumberOfTilesToLoad);
         //Debug.Log("V_ONLYONCE:::::::  " + v_onlyOnce);
         if ((!v_onlyOnce && GlobalVariables.v_NumberOfTilesToLoad == 16) || (!v_onlyOnce && GlobalVariables.v_NumberOfTilesToLoad == 9))
         {
-       
-
-
+            //Debug.LogError("Inside v_onlyOnce and v_numberofTileesToLoad ----------------------------------------");
             List<int> v_newGrid = new List<int>();
             for (int b = 0; b < GlobalVariables.v_grid.Count; b++)
             {
@@ -194,13 +207,13 @@ public class SpawnRandomTiles : MonoBehaviour
                 double emptyTileRow;
                 if (GlobalVariables.v_grid[a] == -1)
                 {
-                    Debug.Log("GlobalVariables.v_grid: " + GlobalVariables.v_grid[a]);
+                    //Debug.Log("GlobalVariables.v_grid: " + GlobalVariables.v_grid[a]);
                     emptyTileRow = ((double)a) / Math.Sqrt(GlobalVariables.v_NumberOfTilesToLoad);
                     emptyTileRow = Math.Sqrt(GlobalVariables.v_NumberOfTilesToLoad) - Math.Floor(emptyTileRow);
                     int inversionCount = 0;
                     if (GlobalVariables.v_gridWidth % 2 == 1)
                     {
-                        Debug.LogError("I am odd width");
+                        //Debug.LogError("I am odd width");
                         for (int c = 0; c < v_newGrid.Count; c++)
                         {
                             for (int d = c + 1; d < v_newGrid.Count; d++)
@@ -211,22 +224,23 @@ public class SpawnRandomTiles : MonoBehaviour
                                 }
 
                             }
-                            Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
+                            //Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
                         }
 
                         if (inversionCount % 2 == 0) //If inversions are even then solvable
                         {
-                            Debug.Log("Total InversionCount: " + inversionCount);
+                            //Debug.Log("Total InversionCount: " + inversionCount);
                             v_onlyOnce = true;
-                            Debug.Log("solvable: " + inversionCount);
+                            //Debug.Log("solvable: " + inversionCount);
                             GlobalVariables.v_solvableboard = true;
+                            updateTileSpriteObject.updateTile();
                             GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                             GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
 
                         }
                         else
                         {
-                            Debug.Log("unsolvable: " + inversionCount);
+                            //Debug.Log("unsolvable: " + inversionCount);
                             v_onlyOnce = false;
                             GlobalVariables.v_solvableboard = false;
                             GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -245,10 +259,10 @@ public class SpawnRandomTiles : MonoBehaviour
                     }
                     else if (GlobalVariables.v_gridWidth % 2 == 0)
                     {
-                        Debug.LogError("I am even width");
+                        //Debug.LogError("I am even width");
                         if ((int)(emptyTileRow % 2) == 0) //even row
                         {
-                            Debug.Log("Even Row: " + emptyTileRow);
+                            //Debug.Log("Even Row: " + emptyTileRow);
                             for (int c = 0; c < v_newGrid.Count; c++)
                             {
                                 for (int d = c + 1; d < v_newGrid.Count; d++)
@@ -259,14 +273,15 @@ public class SpawnRandomTiles : MonoBehaviour
                                     }
 
                                 }
-                                Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
+                                //Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
                             }
                             if (inversionCount % 2 == 1) //If inversions are odd then solvable
                             {
-                                Debug.Log("InversionCount: " + inversionCount);
+                                //Debug.Log("InversionCount: " + inversionCount);
                                 v_onlyOnce = true;
-                                Debug.Log("solvable: " + inversionCount);
+                                //Debug.Log("solvable: " + inversionCount);
                                 GlobalVariables.v_solvableboard = true;
+                                updateTileSpriteObject.updateTile();
                                 GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                                 GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
                                 //entryDoor = GameObject.FindGameObjectWithTag("entryDoor");
@@ -277,7 +292,7 @@ public class SpawnRandomTiles : MonoBehaviour
                             }
                             else
                             {
-                                Debug.Log("unsolvable: " + inversionCount);
+                                //Debug.Log("unsolvable: " + inversionCount);
 
                                 v_onlyOnce = false;
                                 GlobalVariables.v_solvableboard = false;
@@ -294,14 +309,14 @@ public class SpawnRandomTiles : MonoBehaviour
 
                                 v_OriginalTile.GetComponent<Tile>().resetVariables();
                                 InstantiateTiles();
-                                Debug.Log("I am in the if statement...HERE I WAS?" + GlobalVariables.v_clonedTiles[5].name);
+                                //Debug.Log("I am in the if statement...HERE I WAS?" + GlobalVariables.v_clonedTiles[5].name);
                             }
 
 
                         }
                         else if ((int)(emptyTileRow % 2) == 1) //odd row
                         {
-                            Debug.Log("Odd Row: " + emptyTileRow);
+                            //Debug.Log("Odd Row: " + emptyTileRow);
                             for (int c = 0; c < v_newGrid.Count; c++)
                             {
                                 for (int d = c + 1; d < v_newGrid.Count; d++)
@@ -312,23 +327,24 @@ public class SpawnRandomTiles : MonoBehaviour
                                     }
 
                                 }
-                                Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
+                                //Debug.Log("InversionCount for : " + v_newGrid[c] + " : " + inversionCount);
 
 
                             }
                             if (inversionCount % 2 == 0) //If inversions are even then solvable
                             {
-                                Debug.Log("Total InversionCount: " + inversionCount);
+                                //Debug.Log("Total InversionCount: " + inversionCount);
                                 v_onlyOnce = true;
-                                Debug.Log("solvable: " + inversionCount);
+                                //Debug.Log("solvable: " + inversionCount);
                                 GlobalVariables.v_solvableboard = true;
+                                updateTileSpriteObject.updateTile();
                                 GlobalVariables.convert2DArray(GlobalVariables.v_grid);
                                 GlobalVariables.convert2DTilesArray(GlobalVariables.v_AllTiles1DList);
 
                             }
                             else
                             {
-                                Debug.Log("unsolvable: " + inversionCount);
+                                //Debug.Log("unsolvable: " + inversionCount);
                                 v_onlyOnce = false;
                                 GlobalVariables.v_solvableboard = false;
                                 GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
@@ -365,6 +381,21 @@ public class SpawnRandomTiles : MonoBehaviour
 
     private void InstantiateTiles()
     {
+        Vector3 v_OriginalTilePos = v_OriginalTile.transform.position;
+        if (GlobalVariables.v_UserDifficultyLevel == "Easy")
+        {
+            v_OriginalTilePos.x = -0.94f;
+            v_OriginalTilePos.y = 3.4f;
+            v_OriginalTilePos.z = 0.43f;
+        }
+        else
+        {
+            v_OriginalTilePos.x = -1.49f; //-1.09
+            v_OriginalTilePos.y = 3.91f; //3.4
+            v_OriginalTilePos.z = 0.43f; //0.43
+        }
+
+        v_OriginalTile.transform.position = v_OriginalTilePos;
         GlobalVariables.v_AllTiles1DList.Add(v_OriginalTile);
         int v_xPosition = 1, v_yPosition = 0;
         bool v_NotFirstEntrance = false;

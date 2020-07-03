@@ -91,11 +91,13 @@ public class Tile : MonoBehaviour
                         //Debug.Log("EMPTY TILE: " + v_TileID);
                         //DESTROY
                         // Debug.LogError("Deleting tile number: " + GlobalVariables.v_emptyTileNum);
-                        GlobalVariables.v_emptyTileObject = gameObject;
+                        
                         gameObject.SetActive(false);
                         gameObject.GetComponent<Tile>().v_TileID = 9;         //CHANGED
                         gameObject.GetComponent<Tile>().v_iAmEmpty = true;
                         gameObject.GetComponent<Tile>().tag = "EmptyTile";
+                        GlobalVariables.v_emptyTileObject = gameObject;
+                        Debug.Log(GlobalVariables.v_emptyTileObject.tag);
                         //Destroy(gameObject);
                         //gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>();
                         GlobalVariables.v_grid.Add(-1);
@@ -118,7 +120,7 @@ public class Tile : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("EMPTY TILE: " + v_TileID + " " + GlobalVariables.v_UserDifficultyLevel);
+                    //Debug.Log("EMPTY TILE: " + v_TileID + " " + GlobalVariables.v_UserDifficultyLevel);
                     if (GlobalVariables.v_UserDifficultyLevel == "Easy")
                     {
                         if (v_TileID == 9)

@@ -39,11 +39,14 @@ public static class GlobalVariables
     public static GameObject v_MainMenuText = GameObject.FindGameObjectWithTag("MainMenuTitleText");
     public static GameObject v_MainTextMesh = GameObject.FindGameObjectWithTag("MainTextMesh");
     public static GameObject v_MainMenuContinueButton;
+    public static GameObject v_BackToMainMenuButton;
+    public static GameObject v_QuitGameButton = GameObject.FindGameObjectWithTag("QuitGame");
     public static GameObject v_ClassicLayout;
     public static GameObject v_UpsideDownLayout;
     public static GameObject v_ClassicEasyLayout;
     public static GameObject v_UpsideDownEasyLayout;
     public static GameObject v_ColumnsLayout;
+    public static bool v_shouldEntryDoorBeInActive = false;
     public static GameObject v_MainMenuPlayButton = GameObject.FindGameObjectWithTag("PlayButton");
     public static int v_escapeCount = 0;
     public static bool v_StartGame=false;
@@ -97,7 +100,7 @@ public static class GlobalVariables
     {
         int count = 0;
         List<int> v_tempArray = new List<int>();
-        Debug.LogError("v_gridWidth: " + v_gridWidth);
+        //Debug.LogError("v_gridWidth: " + v_gridWidth);
         for (int i = 0; i < v_grid.Count; i++)
         {
             v_tempArray.Add(v_grid[i]);
@@ -122,7 +125,7 @@ public static class GlobalVariables
     {
         int count = 0;
         List<GameObject> v_tempArray = new List<GameObject>();
-        Debug.LogError("v_gridWidth: " + v_gridWidth);
+        //Debug.LogError("v_gridWidth: " + v_gridWidth);
         for (int i = 0; i < v_AllTiles1DList.Count; i++)
         {
             v_tempArray.Add(v_AllTiles1DList[i]);
@@ -164,7 +167,7 @@ public static class GlobalVariables
             {
                 if(v_2Dlist[c, d] == -1)
                 {
-                    Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
+                    //Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
                 }
                 //Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
             }
@@ -182,9 +185,9 @@ public static class GlobalVariables
                 //{
                 //    Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
                 //}
-                Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
+                //Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
             }
-            Debug.LogError("NEW ROW: " + c);
+            //Debug.LogError("NEW ROW: " + c);
         }
     }
 
@@ -198,9 +201,9 @@ public static class GlobalVariables
                 //{
                 //    Debug.LogError("Count [" + c + "," + d + "] : " + v_2Dlist[c, d]);
                 //}
-                Debug.LogError("Count [" + c + "," + d + "] : " + v_AllTiles2DArray[c, d].GetComponent<Tile>().v_TileID);
+                //Debug.LogError("Count [" + c + "," + d + "] : " + v_AllTiles2DArray[c, d].GetComponent<Tile>().v_TileID);
             }
-            Debug.LogError("NEW ROW: " + c);
+            //Debug.LogError("NEW ROW: " + c);
         }
     }
 }

@@ -10,6 +10,9 @@ public class MainMenuFunctions : MonoBehaviour
         GlobalVariables.v_MainMenuContinueButton = GameObject.FindGameObjectWithTag("ContinueButton");
         GlobalVariables.v_MainMenuContinueButton.SetActive(false);
 
+        GlobalVariables.v_BackToMainMenuButton = GameObject.FindGameObjectWithTag("BacktoMainMenu");
+        GlobalVariables.v_BackToMainMenuButton.SetActive(false);
+
         GlobalVariables.v_ClassicLayout = GameObject.FindGameObjectWithTag("ClassicLayout");
         //GlobalVariables.v_ClassicLayout.SetActive(false);
 

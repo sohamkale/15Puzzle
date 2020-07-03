@@ -21,6 +21,8 @@ TagManager:
   - ColumnsLayout
   - UpsideDownEasyLayout
   - ClassicEasyLayout
+  - BacktoMainMenu
+  - QuitGame
   layers:
   - Default
   - TransparentFX
