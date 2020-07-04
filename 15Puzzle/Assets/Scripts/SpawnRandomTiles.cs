@@ -89,7 +89,7 @@ public class SpawnRandomTiles : MonoBehaviour
                 //GlobalVariables.v_solvableboard = false;
                 GlobalVariables.v_shouldTimePause = true;
                 GlobalVariables.v_escapeCount++;
-                GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "PAUSED!!";
+                GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "PAUSED";
                 //Debug.LogError(GlobalVariables.v_MainMenuContinueButton.name);
                 GlobalVariables.v_MainMenuContinueButton.SetActive(true);
                 GlobalVariables.v_MainMenuPlayButton.SetActive(false);
