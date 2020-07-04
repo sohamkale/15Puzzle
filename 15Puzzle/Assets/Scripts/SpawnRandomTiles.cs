@@ -94,6 +94,11 @@ public class SpawnRandomTiles : MonoBehaviour
                 GlobalVariables.v_MainMenuContinueButton.SetActive(true);
                 GlobalVariables.v_MainMenuPlayButton.SetActive(false);
                 //GameObject MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+                
+
+                GlobalVariables.v_BackToMainMenuButton.SetActive(true);
+                GlobalVariables.v_QuitGameButton.SetActive(false);
+
                 GlobalVariables.v_MainMenu.SetActive(true);
             }
             else if (GlobalVariables.v_escapeCount == 1)
@@ -112,7 +117,12 @@ public class SpawnRandomTiles : MonoBehaviour
                 GlobalVariables.v_MainMenuPlayButton.SetActive(true);
                 //GameObject MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
                 //MainMenu.SetActive(false);
+                //changed code
+                GlobalVariables.v_BackToMainMenuButton.SetActive(false);
+                GlobalVariables.v_QuitGameButton.SetActive(true);
+                //changed code ends
                 GlobalVariables.v_MainMenu.SetActive(false);
+
             }
 
             //Application.Quit();

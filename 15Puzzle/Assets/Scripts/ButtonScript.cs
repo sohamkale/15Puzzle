@@ -39,7 +39,7 @@ public class ButtonScript : MonoBehaviour
         //GlobalVariables.v_entryDoor.SetActive(true);
         //GlobalVariables.v_solvableboard = false;
         GlobalVariables.v_shouldTimePause = true;
-        GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "PAUSED!!";
+        GlobalVariables.v_MainMenuText.GetComponent<TMPro.TextMeshProUGUI>().text = "PAUSED";
         GlobalVariables.v_BackToMainMenuButton.SetActive(true);
         GlobalVariables.v_QuitGameButton.SetActive(false);
         GlobalVariables.v_MainMenuContinueButton.SetActive(true);
