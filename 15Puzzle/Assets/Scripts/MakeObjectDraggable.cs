@@ -271,7 +271,7 @@ public class MakeObjectDraggable : MonoBehaviour
     {
         int matchCount = 0;
         int multiplier = 0;
-        if (GlobalVariables.v_NumberOfTilesToLoad == (GlobalVariables.v_gridWidth * GlobalVariables.v_gridWidth))
+        if (GlobalVariables.v_NumberOfTilesToLoad == 9)
         {
             for (int i = 0; i < GlobalVariables.v_gridWidth; i++)
             {
